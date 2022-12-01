@@ -19,7 +19,7 @@ class App extends React.Component {
       resultado2: '',
       registro: '',
       lista: []
-      
+
     }
 
     this.handleInput = this.handleInput.bind(this);
@@ -40,46 +40,48 @@ class App extends React.Component {
     })
 
   }
-  displayTable({resultado}){
-        return (
-        <div>
-          <h1>Resultados</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Embarazos </th>
-                <th>Glucosa </th>
-                <th>Presion </th>
-                <th>Grosor de Piel </th>
-                <th>Insulina </th>
-                <th>BMI </th>
-                <th>DPF </th>
-                <th>Edad </th>
-                <th>Resultado </th>
+  displayTable({ resultado }) {
+    return (
+      <div>
+        <h1>Resultados</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID </th>
+              <th>Embarazos </th>
+              <th>Glucosa </th>
+              <th>Presion </th>
+              <th>Grosor de Piel </th>
+              <th>Insulina </th>
+              <th>BMI </th>
+              <th>DPF </th>
+              <th>Edad </th>
+              <th>Resultado </th>
 
-              </tr>
-            </thead>
-            <tbody>
-              {
-                resultado?.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.embarazos}</td>
-                    <td>{item.glucosa}</td>
-                    <td>{item.presion}</td>
-                    <td>{item.grosorPiel}</td>
-                    <td>{item.insulina}</td>
-                    <td>{item.bmi}</td>
-                    <td>{item.dpf}</td>
-                    <td>{item.edad}</td>
-                    <td>{item.resultado}</td>
-                    <td />
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-        );
+            </tr>
+          </thead>
+          <tbody>
+            {
+              resultado?.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.embarazos}</td>
+                  <td>{item.glucosa}</td>
+                  <td>{item.presion}</td>
+                  <td>{item.grosorPiel}</td>
+                  <td>{item.insulina}</td>
+                  <td>{item.bmi}</td>
+                  <td>{item.dpf}</td>
+                  <td>{item.edad}</td>
+                  <td>{item.resultado}</td>
+                  <td />
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    );
   }
   handleSubmit() {
 
@@ -93,7 +95,7 @@ class App extends React.Component {
         this.setState({ lista: result })
       }
       );
-      
+
   }
   obtRegistro() {
     //console.log("HOLA");
@@ -115,7 +117,8 @@ class App extends React.Component {
           return Promise.reject(error);
         }
 
-        this.setState({ lista: JSON.stringify(data) })
+        this.setState({ lista: [] })
+        this.setState({ lista: [data] })
       })
       .catch(error => {
         console.error('There was an error!', error);
@@ -352,7 +355,11 @@ class App extends React.Component {
         </div>
 
         <div>
-          <this.displayTable resultado = {this.state.lista}/>
+          <p>{this.state.resultado}</p>
+        </div>
+
+        <div>
+          <this.displayTable resultado={this.state.lista} />
         </div>
 
       </div>
