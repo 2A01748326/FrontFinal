@@ -90,7 +90,7 @@ class App extends React.Component {
       }).then(res => res.json()).then(result => {
         console.info(result);
 
-        this.setState({ resultado: result })
+        this.setState({ lista: result })
       }
       );
       
@@ -115,7 +115,7 @@ class App extends React.Component {
           return Promise.reject(error);
         }
 
-        this.setState({ resultado: JSON.stringify(data) })
+        this.setState({ lista: JSON.stringify(data) })
       })
       .catch(error => {
         console.error('There was an error!', error);
