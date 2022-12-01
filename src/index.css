@@ -27,7 +27,7 @@
   form {
   margin: 0 30px;
   }
-  input[type=text]{
+  input[type=text] {
   height: 36px;
   margin: 13px 0 0 -5px;
   padding-left: 10px; 
@@ -37,6 +37,18 @@
   box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
   background: #fff; 
   }
+
+  table{
+    height: 36px;
+    margin: 13px 0 0 -5px;
+    padding-left: 10px; 
+    border-radius: 0 5px 5px 0;
+    border: solid 1px #0020ee; 
+    color: rgb(0, 0, 0);
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+    background: #fff; 
+    width: 100%;
+    }
 
    img {
     height: 15%;
@@ -77,4 +89,8 @@
     -webkit-appearance: button;
     appearance: button;
     outline: none;
+  }
+
+  th{
+    padding: 12px;
   }

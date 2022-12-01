@@ -43,19 +43,19 @@ class App extends React.Component {
   displayTable({resultado}){
         return (
         <div>
-          <h1>Simple Inventory Table</h1>
+          <h1>Resultados</h1>
           <table>
             <thead>
               <tr>
-                <th>Embarazos</th>
-                <th>Glucosa</th>
-                <th>Presion</th>
-                <th>Grosor de Piel</th>
-                <th>Insulina</th>
-                <th>BMI</th>
-                <th>DPF</th>
-                <th>Edad</th>
-                <th>Resultado</th>
+                <th>Embarazos </th>
+                <th>Glucosa </th>
+                <th>Presion </th>
+                <th>Grosor de Piel </th>
+                <th>Insulina </th>
+                <th>BMI </th>
+                <th>DPF </th>
+                <th>Edad </th>
+                <th>Resultado </th>
 
               </tr>
             </thead>
