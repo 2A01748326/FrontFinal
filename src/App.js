@@ -41,22 +41,28 @@ class App extends React.Component {
     })
 
   }
-  displayTable(props){
+  displayTable({resultado}){
         return (
         <div>
           <h1>Simple Inventory Table</h1>
           <table>
             <thead>
               <tr>
-                <th>Product Name</th>
-                <th>Product Category</th>
-                <th>Unit Price</th>
-                <th>Action</th>
+                <th>Embarazos</th>
+                <th>Glucosa</th>
+                <th>Presion</th>
+                <th>Grosor de Piel</th>
+                <th>Insulina</th>
+                <th>BMI</th>
+                <th>DPF</th>
+                <th>Edad</th>
+                <th>Resultado</th>
+
               </tr>
             </thead>
             <tbody>
               {
-                props.table.map((item) => (
+                resultado.map((item) => (
                   <tr key={item.id}>
                     <td>{item.embarazos}</td>
                     <td>{item.glucosa}</td>
@@ -87,10 +93,12 @@ class App extends React.Component {
 
         this.setState({ resultado: JSON.stringify(result) })
       }
-      );
-      const root = ReactDOM.createRoot(document.getElementById('TABLA'));
-      const element = <this.displayTable table = {this.resultado}/>
-      root.render(element);
+      ).then(() =>{
+        const root = ReactDOM.createRoot(document.getElementById('TABLA'));
+        const element = <this.displayTable table = {this.resultado}/>
+        root.render(element);
+      }
+      )
   }
   obtRegistro() {
     //console.log("HOLA");
@@ -349,7 +357,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <div id="TABLA"></div>
+          <this.displayTable table = {this.resultado}/>
         </div>
 
       </div>
