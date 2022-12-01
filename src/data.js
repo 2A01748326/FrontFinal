@@ -1,4 +1,4 @@
-export const datos = [
+const datos = [
   {
     "embarazos": 6,
     "glucosa": 148,
@@ -8448,3 +8448,5 @@ export const datos = [
     "resultado": 0
   }
 ]
+
+export default datos

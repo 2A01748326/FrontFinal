@@ -10,6 +10,11 @@
     justify-content: center;
     }
   
+
+    label{
+      padding-right: 10px; 
+    }
+
   body, div, form, input{ 
   outline: none;
   font-family: Roboto, Arial, sans-serif;

@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import datos from "./data.js"
 const x = new URL("../images/diabetes.png", import.meta.url)
 
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.obtRegistro = this.obtRegistro.bind(this);
     this.crearRegistro = this.crearRegistro.bind(this);
+    this.crearRegistros = this.crearRegistros.bind(this);
     this.eliminarRegistro = this.eliminarRegistro.bind(this);
     this.predecir = this.predecir.bind(this);
     this.entrenarModelo = this.entrenarModelo.bind(this);
@@ -246,6 +248,49 @@ class App extends React.Component {
       );
   }
 
+  crearRegistros() {
+
+    //console.log(datos.length);
+
+    datos.map((member,index) => {
+      //console.log(member.embarazos);
+    
+
+    fetch('http://54.158.42.146:8080/base/crearRegistro', {
+      method: "post",
+      body: JSON.stringify({
+        embarazos: member.embarazos,
+        glucosa: member.glucosa,
+        presion: member.presion,
+        grosorPiel: member.grosorPiel,
+        insulina: member.insulina,
+        bmi: member.bmi,
+        dpf: member.dpf,
+        edad: member.edad,
+        resultado: member.resultado2
+      }),
+      headers: { 'Content-type': 'application/json' }
+
+    })
+      .then(async response => {
+        const data = await response.text();
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response statusText
+          const error = (data && data.message) || response.statusText;
+          return Promise.reject(error);
+        }
+
+        this.setState({ resultado: data })
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
+
+    })
+  }
+
   render() {
     console.log(this.state);
     return (
@@ -268,41 +313,48 @@ class App extends React.Component {
               <div className="card-body">
 
                 <form>
-
                   <div className="form-group">
+                  <label>Embarazos&ensp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} name="embarazos" placeholder="Embarazos" />
                   </div>
 
 
                   <div className="form-group">
+                  <label>Glucosa&nbsp;&ensp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="glucosa" name="glucosa" placeholder="Glucosa" />
                   </div>
 
                   <div className="form-group">
+                  <label>Presion&emsp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="presion" name="presion" placeholder="Presion" />
                   </div>
 
 
                   <div className="form-group">
+                  <label>Grosor de Piel</label>
                     <input type="text" onChange={this.handleInput} id="grosorPiel" name="grosorPiel" placeholder="Grosor de Piel" />
                   </div>
 
 
                   <div className="form-group">
+                  <label>Insulina&nbsp;&ensp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="insulina" name="insulina" placeholder="Insulina" />
                   </div>
 
 
                   <div className="form-group">
+                  <label>BMI&ensp;&emsp;&emsp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="bmi" name="bmi" placeholder="BMI" />
                   </div>
 
 
                   <div className="form-group">
+                  <label>DPF&nbsp;&emsp;&emsp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="dpf" name="dpf" placeholder="DPF" />
                   </div>
 
                   <div className="form-group">
+                  <label>Edad&emsp;&emsp;&emsp;&emsp;</label>
                     <input type="text" onChange={this.handleInput} id="edad" name="edad" placeholder="Edad" />
                   </div>
 
@@ -346,6 +398,9 @@ class App extends React.Component {
                 <button onClick={this.entrenarModelo}>Reentrenar el modelo</button>
               </div>
 
+              <div>
+                <button onClick={this.crearRegistros}>Crear registros</button>
+              </div>
 
             </div>
 
