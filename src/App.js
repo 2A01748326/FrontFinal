@@ -92,7 +92,7 @@ class App extends React.Component {
       {
         method: "get"
       }).then(res => res.json()).then(result => {
-        console.info(result);
+        console.log(result);
 
         this.setState({ lista: result })
       }
@@ -189,11 +189,11 @@ class App extends React.Component {
       });
   }
 
-  crearRegistro() {
-    //console.log("HOLA");
+  crearRegistros() {
+    console.log((datos));
     fetch('http://54.158.42.146:8080/base/crearRegistros', {
       method: "post",
-      body: datos,
+      body: (datos),
       headers: { 'Content-type': 'application/json' }
 
     })
