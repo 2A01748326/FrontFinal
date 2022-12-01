@@ -206,7 +206,6 @@ class App extends React.Component {
       headers: { 'Content-type': 'application/json' }
 
     })
-    })
     //console.log("HOLA");
       .then(async response => {
         const data = await response.text();
@@ -223,6 +222,7 @@ class App extends React.Component {
       .catch(error => {
         console.error('There was an error!', error);
       })
+    })
   }
   predecir() {
     //console.log("HOLA");
