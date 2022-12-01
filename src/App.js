@@ -17,10 +17,10 @@ class App extends React.Component {
       bmi: '',
       dpf: '',
       edad: '',
-      resultado: [],
+      resultado: '',
       resultado2: '',
       registro: '',
-      lista: ''
+      lista: []
     }
 
     this.handleInput = this.handleInput.bind(this);
@@ -352,7 +352,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <this.displayTable resultado = {this.state.resultado}/>
+          <this.displayTable resultado = {this.state.lista}/>
         </div>
 
       </div>
