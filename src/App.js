@@ -352,7 +352,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <this.displayTable table = {this.resultado}/>
+          <this.displayTable resultado = {this.resultado}/>
         </div>
 
       </div>
