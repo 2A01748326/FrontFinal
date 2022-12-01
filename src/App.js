@@ -91,7 +91,7 @@ class App extends React.Component {
       }).then(res => res.json()).then(result => {
         console.info(result);
 
-        this.setState({ resultado: JSON.stringify(result) })
+        this.setState({ resultado: result })
       }
       ).then(() =>{
         const root = ReactDOM.createRoot(document.getElementById('TABLA'));
