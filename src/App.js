@@ -1,4 +1,3 @@
-import { wait } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import './App.css';
 import * as ReactDOM from 'react-dom';
@@ -62,7 +61,7 @@ class App extends React.Component {
             </thead>
             <tbody>
               {
-                resultado.map((item) => (
+                resultado?.map((item) => (
                   <tr key={item.id}>
                     <td>{item.embarazos}</td>
                     <td>{item.glucosa}</td>
