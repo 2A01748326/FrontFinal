@@ -182,11 +182,6 @@ class App extends React.Component {
     //console.log("HOLA");
     fetch('http://3.89.118.80:8080/base/consultarRegistros', {
       method: "post",
-      body: JSON.stringify({
-        id: this.state.registro
-      }),
-      headers: { 'Content-type': 'application/json' }
-
     })
       .then(async response => {
         const data = await response.json();
