@@ -30,6 +30,7 @@ class App extends React.Component {
     this.eliminarRegistro = this.eliminarRegistro.bind(this);
     this.predecir = this.predecir.bind(this);
     this.entrenarModelo = this.entrenarModelo.bind(this);
+    this.displayTable = this.displayTable.bind(this);
 
   }
   handleInput(e) {
@@ -38,6 +39,41 @@ class App extends React.Component {
       [name]: value
     })
 
+  }
+  displayTable(props){
+        return (
+        <div>
+          <h1>Simple Inventory Table</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Unit Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                props.table.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.embarazos}</td>
+                    <td>{item.glucosa}</td>
+                    <td>{item.presion}</td>
+                    <td>{item.grosorPiel}</td>
+                    <td>{item.insulina}</td>
+                    <td>{item.bmi}</td>
+                    <td>{item.dpf}</td>
+                    <td>{item.edad}</td>
+                    <td>{item.resultado}</td>
+                    <td />
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        );
   }
   handleSubmit() {
 
@@ -51,7 +87,9 @@ class App extends React.Component {
         this.setState({ resultado: result })
       }
       );
-
+      const root = ReactDOM.createRoot(document.getElementById('TABLA'));
+      const element = <this.displayTable table = {this.resultado}/>
+      root.render(element);
   }
   obtRegistro() {
     //console.log("HOLA");
@@ -310,39 +348,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <p>Resultado:</p>
-        </div>
-
-        <div>
-          <h1>Simple Inventory Table</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Product Category</th>
-                <th>Unit Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                resultado.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.embarazos}</td>
-                    <td>{item.glucosa}</td>
-                    <td>{item.presion}</td>
-                    <td>{item.grosorPiel}</td>
-                    <td>{item.insulina}</td>
-                    <td>{item.bmi}</td>
-                    <td>{item.dpf}</td>
-                    <td>{item.edad}</td>
-                    <td>{item.resultado}</td>
-                    <td />
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
+          <div id="TABLA"></div>
         </div>
 
       </div>
