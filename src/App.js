@@ -92,12 +92,8 @@ class App extends React.Component {
 
         this.setState({ resultado: result })
       }
-      ).then(() =>{
-        const root = ReactDOM.createRoot(document.getElementById('TABLA'));
-        const element = <this.displayTable table = {this.resultado}/>
-        root.render(element);
-      }
-      )
+      );
+      
   }
   obtRegistro() {
     //console.log("HOLA");
