@@ -18,7 +18,8 @@ class App extends React.Component {
       resultado: '',
       resultado2: '',
       registro: '',
-      lista: []
+      lista: [],
+      jsonT: []
 
     }
 
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.obtRegistro = this.obtRegistro.bind(this);
     this.crearRegistro = this.crearRegistro.bind(this);
+    this.crearRegistros = this.crearRegistros.bind(this);
     this.eliminarRegistro = this.eliminarRegistro.bind(this);
     this.predecir = this.predecir.bind(this);
     this.entrenarModelo = this.entrenarModelo.bind(this);
@@ -187,6 +189,41 @@ class App extends React.Component {
       });
   }
 
+  crearRegistros() {
+    fetch('data.json',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }
+    ).then(response =>{
+
+    fetch('http://54.158.42.146:8080/base/crearRegistros', {
+      method: "post",
+      body: response.json()
+      ,
+      headers: { 'Content-type': 'application/json' }
+
+    })
+    })
+    //console.log("HOLA");
+      .then(async response => {
+        const data = await response.text();
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response statusText
+          const error = (data && data.message) || response.statusText;
+          return Promise.reject(error);
+        }
+
+        this.setState({ resultado: data })
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      })
+  }
   predecir() {
     //console.log("HOLA");
     fetch('http://54.158.42.146:8081/modelo/prediccion', {
@@ -343,6 +380,9 @@ class App extends React.Component {
                 <button onClick={this.crearRegistro}>Crear registro (También llena el form)</button>
               </div>
 
+              <div>
+                <button onClick={this.crearRegistros}>Crear registros</button>
+              </div>
               <div>
                 <button onClick={this.entrenarModelo}>Reentrenar el modelo</button>
               </div>
