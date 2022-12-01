@@ -203,7 +203,20 @@ class App extends React.Component {
       body: JSON.stringify({DB:data}),
       headers: { 'Content-type': 'application/json' }
 
-    })
+    }).then( async response => {
+        const data = await response.text();
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response statusText
+          const error = (data && data.message) || response.statusText;
+          return Promise.reject(error);
+        }
+        this.setState({ resultado: data })
+      }
+    ).catch(error => {
+        console.log('There was an error!', error)
+    });
       })
       .catch(error => {
         console.error('There was an error!', error);
