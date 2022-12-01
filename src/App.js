@@ -1,6 +1,5 @@
 import React from "react";
 import './App.css';
-import {datos} from './data'
 const x = new URL("../images/diabetes.png", import.meta.url)
 
 class App extends React.Component {
@@ -19,8 +18,6 @@ class App extends React.Component {
       resultado2: '',
       registro: '',
       lista: [],
-      jsonT: []
-
     }
 
     this.handleInput = this.handleInput.bind(this);
