@@ -180,42 +180,26 @@ class App extends React.Component {
 
   entrenarModelo() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/consultarRegistros', {
-      method: "post",
-    })
-      .then(async response => {
-        const data = await response.json();
+    fetch('http://3.89.118.80:8080/base/consultarRegistros',
+      {
+        method: "get"
+      }).then(res => res.json()).then(result => {
+        console.info(result);
+      fetch('http://3.89.118.80:8081/modelo/reentrenar', {
+        method: "post",
+        body: JSON.stringify({
+          DB: result
+        }),
+        headers: { 'Content-type': 'application/json' }
 
-        // check for error response
-        if (!response.ok) {
-          // get error message from body or default to response statusText
-          const error = (data && data.message) || response.statusText;
-          return Promise.reject(error);
-        }
-
-    fetch('http://3.89.118.80:8081/modelo/reentrenar', {
-      method: "post",
-      body: JSON.stringify({DB:data}),
-      headers: { 'Content-type': 'application/json' }
-
-    }).then( async response => {
-        const data = await response.text();
-
-        // check for error response
-        if (!response.ok) {
-          // get error message from body or default to response statusText
-          const error = (data && data.message) || response.statusText;
-          return Promise.reject(error);
-        }
-        this.setState({ resultado: data })
-      }
-    ).catch(error => {
-        console.log('There was an error!', error)
-    });
       })
-      .catch(error => {
-        console.error('There was an error!', error);
-      });
+        .then(async response => {
+          const data = await response.text();
+          this.setState({ resultado: JSON.stringify(data) })
+        })
+        //this.setState({ resultado: JSON.stringify(result) })
+      }
+      );
   }
 
   render() {
