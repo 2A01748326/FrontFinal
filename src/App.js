@@ -19,7 +19,8 @@ class App extends React.Component {
       edad: '',
       resultado: '',
       resultado2: '',
-      registro: ''
+      registro: '',
+      lista: ''
     }
 
     this.handleInput = this.handleInput.bind(this);
@@ -41,7 +42,7 @@ class App extends React.Component {
   handleSubmit() {
 
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8080/base/consultarRegistros',
+    fetch('http://3.89.118.80:8080/base/consultarRegistros',
       {
         method: "get"
       }).then(res => res.json()).then(result => {
@@ -54,7 +55,7 @@ class App extends React.Component {
   }
   obtRegistro() {
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8080/base/consultarRegistro', {
+    fetch('http://3.89.118.80:8080/base/consultarRegistro', {
       method: "post",
       body: JSON.stringify({
         id: this.state.registro
@@ -81,7 +82,7 @@ class App extends React.Component {
 
   eliminarRegistro() {
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8080/base/eliminarRegistro', {
+    fetch('http://3.89.118.80:8080/base/eliminarRegistro', {
       method: "post",
       body: JSON.stringify({
         id: this.state.registro
@@ -108,7 +109,7 @@ class App extends React.Component {
 
   crearRegistro() {
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8080/base/crearRegistro', {
+    fetch('http://3.89.118.80:8080/base/crearRegistro', {
       method: "post",
       body: JSON.stringify({
         embarazos: this.state.embarazos,
@@ -143,7 +144,7 @@ class App extends React.Component {
 
   predecir() {
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8081/modelo/prediccion', {
+    fetch('http://3.89.118.80:8081/modelo/prediccion', {
       method: "post",
       mode: 'cors',
       body: JSON.stringify({
@@ -179,7 +180,7 @@ class App extends React.Component {
 
   entrenarModelo() {
     //console.log("HOLA");
-    fetch('http://3.90.232.48:8080/modelo/reentrenar', {
+    fetch('http://3.89.118.80:8080/base/consultarRegistros', {
       method: "post",
       body: JSON.stringify({
         id: this.state.registro
@@ -197,7 +198,12 @@ class App extends React.Component {
           return Promise.reject(error);
         }
 
-        this.setState({ resultado: JSON.stringify(data) })
+    fetch('http://3.89.118.80:8081/modelo/reentrenar', {
+      method: "post",
+      body: JSON.stringify({DB:data}),
+      headers: { 'Content-type': 'application/json' }
+
+    })
       })
       .catch(error => {
         console.error('There was an error!', error);
@@ -324,4 +330,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App;
