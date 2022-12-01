@@ -1,6 +1,7 @@
 import { wait } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import './App.css';
+import * as ReactDOM from 'react-dom';
 const x = new URL("../images/diabetes.png", import.meta.url)
 
 
@@ -84,7 +85,7 @@ class App extends React.Component {
       }).then(res => res.json()).then(result => {
         console.info(result);
 
-        this.setState({ resultado: result })
+        this.setState({ resultado: JSON.stringify(result) })
       }
       );
       const root = ReactDOM.createRoot(document.getElementById('TABLA'));
