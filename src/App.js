@@ -1,5 +1,4 @@
 import React from "react";
-import React, {useEffect, useState} from "react";
 import './App.css';
 import * as ReactDOM from 'react-dom';
 const x = new URL("../images/diabetes.png", import.meta.url)
