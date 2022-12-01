@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import * as ReactDOM from 'react-dom';
+import datos from './data.json'
 const x = new URL("../images/diabetes.png", import.meta.url)
 
 class App extends React.Component {
@@ -189,24 +189,14 @@ class App extends React.Component {
       });
   }
 
-  crearRegistros() {
-    fetch('data.json',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }
-    ).then(response =>{
-
+  crearRegistro() {
+    //console.log("HOLA");
     fetch('http://54.158.42.146:8080/base/crearRegistros', {
       method: "post",
-      body: response.json()
-      ,
+      body: datos,
       headers: { 'Content-type': 'application/json' }
 
     })
-    //console.log("HOLA");
       .then(async response => {
         const data = await response.text();
 
@@ -221,8 +211,7 @@ class App extends React.Component {
       })
       .catch(error => {
         console.error('There was an error!', error);
-      })
-    })
+      });
   }
   predecir() {
     //console.log("HOLA");
