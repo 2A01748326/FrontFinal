@@ -48,7 +48,7 @@ class App extends React.Component {
       }).then(res => res.json()).then(result => {
         console.info(result);
 
-        this.setState({ resultado: JSON.stringify(result) })
+        this.setState({ resultado: result })
       }
       );
 
@@ -185,18 +185,18 @@ class App extends React.Component {
         method: "get"
       }).then(res => res.json()).then(result => {
         console.info(result);
-      fetch('http://3.89.118.80:8081/modelo/reentrenar', {
-        method: "post",
-        body: JSON.stringify({
-          DB: result
-        }),
-        headers: { 'Content-type': 'application/json' }
+        fetch('http://3.89.118.80:8081/modelo/reentrenar', {
+          method: "post",
+          body: JSON.stringify({
+            DB: result
+          }),
+          headers: { 'Content-type': 'application/json' }
 
-      })
-        .then(async response => {
-          const data = await response.text();
-          this.setState({ resultado: JSON.stringify(data) })
         })
+          .then(async response => {
+            const data = await response.text();
+            this.setState({ resultado: JSON.stringify(data) })
+          })
         //this.setState({ resultado: JSON.stringify(result) })
       }
       );
@@ -262,7 +262,7 @@ class App extends React.Component {
                     <input type="text" onChange={this.handleInput} id="edad" name="edad" placeholder="Edad" />
                   </div>
 
-                  
+
 
                 </form>
                 <button onClick={this.predecir}>Enviar</button>
@@ -314,7 +314,35 @@ class App extends React.Component {
         </div>
 
         <div>
-          <p>{this.state.resultado}</p>
+          <h1>Simple Inventory Table</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Unit Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                resultado.map((item) => (
+                  <tr key={item.id}>
+                    <td>{item.embarazos}</td>
+                    <td>{item.glucosa}</td>
+                    <td>{item.presion}</td>
+                    <td>{item.grosorPiel}</td>
+                    <td>{item.insulina}</td>
+                    <td>{item.bmi}</td>
+                    <td>{item.dpf}</td>
+                    <td>{item.edad}</td>
+                    <td>{item.resultado}</td>
+                    <td />
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
         </div>
 
       </div>
@@ -322,4 +350,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App;
