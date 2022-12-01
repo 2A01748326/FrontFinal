@@ -3,8 +3,6 @@ import './App.css';
 import * as ReactDOM from 'react-dom';
 const x = new URL("../images/diabetes.png", import.meta.url)
 
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -21,6 +19,7 @@ class App extends React.Component {
       resultado2: '',
       registro: '',
       lista: []
+      
     }
 
     this.handleInput = this.handleInput.bind(this);
@@ -33,6 +32,7 @@ class App extends React.Component {
     this.displayTable = this.displayTable.bind(this);
 
   }
+
   handleInput(e) {
     const { value, name } = e.target;
     this.setState({
@@ -84,7 +84,7 @@ class App extends React.Component {
   handleSubmit() {
 
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/consultarRegistros',
+    fetch('http://54.158.42.146:8080/base/consultarRegistros',
       {
         method: "get"
       }).then(res => res.json()).then(result => {
@@ -97,7 +97,7 @@ class App extends React.Component {
   }
   obtRegistro() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/consultarRegistro', {
+    fetch('http://54.158.42.146:8080/base/consultarRegistro', {
       method: "post",
       body: JSON.stringify({
         id: this.state.registro
@@ -124,7 +124,7 @@ class App extends React.Component {
 
   eliminarRegistro() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/eliminarRegistro', {
+    fetch('http://54.158.42.146:8080/base/eliminarRegistro', {
       method: "post",
       body: JSON.stringify({
         id: this.state.registro
@@ -151,7 +151,7 @@ class App extends React.Component {
 
   crearRegistro() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/crearRegistro', {
+    fetch('http://54.158.42.146:8080/base/crearRegistro', {
       method: "post",
       body: JSON.stringify({
         embarazos: this.state.embarazos,
@@ -186,7 +186,7 @@ class App extends React.Component {
 
   predecir() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8081/modelo/prediccion', {
+    fetch('http://54.158.42.146:8081/modelo/prediccion', {
       method: "post",
       mode: 'cors',
       body: JSON.stringify({
@@ -222,12 +222,12 @@ class App extends React.Component {
 
   entrenarModelo() {
     //console.log("HOLA");
-    fetch('http://3.89.118.80:8080/base/consultarRegistros',
+    fetch('http://54.158.42.146:8080/base/consultarRegistros',
       {
         method: "get"
       }).then(res => res.json()).then(result => {
         console.info(result);
-        fetch('http://3.89.118.80:8081/modelo/reentrenar', {
+        fetch('http://54.158.42.146:8081/modelo/reentrenar', {
           method: "post",
           body: JSON.stringify({
             DB: result
