@@ -1,4 +1,4 @@
-[
+export const datos = [
   {
     "embarazos": 6,
     "glucosa": 148,

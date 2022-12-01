@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import datos from './data.json'
+import {datos} from './data'
 const x = new URL("../images/diabetes.png", import.meta.url)
 
 class App extends React.Component {
